@@ -10,18 +10,37 @@ module.exports = {
       description: `Place to display my stuff.`,
   },
   plugins: [
-      {
-          resolve: `gatsby-plugin-mdx`,
-          options: {
-              extensions: [`.mdx`, `.md`],
-          },
-      },
-      {
-          resolve: `gatsby-source-filesystem`,
-          options: {
-              name: `posts`,
-              path: `${__dirname}/src/furniture`,
-          },
-      },
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
+    `gatsby-transformer-remark`,
+    `gatsby-remark-images`,
+    {
+        resolve: `gatsby-plugin-mdx`,
+        options: {
+            extensions: [`.mdx`, `.md`],
+            gatsbyRemarkPlugins: [
+                {
+                  resolve: `gatsby-remark-images`,
+                  options: {
+                    maxWidth: 1200,
+                  },
+                },
+            ],
+        },
+    },
+    {
+        resolve: `gatsby-source-filesystem`,
+        options: {
+            name: `posts`,
+            path: `${__dirname}/src/furniture`,
+        },
+    },
+    {
+        resolve: `gatsby-source-filesystem`,
+        options: {
+            name: `posts`,
+            path: `${__dirname}/src/img`,
+        },
+    },
   ],
 }
